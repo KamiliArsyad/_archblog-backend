@@ -1,5 +1,5 @@
 # _archblog-backend
-This is the backend for my personal blog. The goal is to make an API for my [website frontend](kamiliarsyad.github.io) to interact with.
+This is the backend for my personal blog. The goal is to make an API for my [website frontend](https://kamiliarsyad.github.io) to interact with.
 The project is made using ExpressJS and the database used is MongoDB's Atlas.
 
 ## build your own
