@@ -1,0 +1,404 @@
+openapi: '3.0.0'
+info:
+  version: '0.1'
+  title: 'archblog'
+  description: Backend API for blog
+servers:
+  - url: http://localhost:5000/api
+    description: Local Development Environment
+  - url: https://archblog-backend-production.up.railway.app/api
+    description: Production Environment
+
+paths:
+  /posts:
+    get:
+      summary: Get all posts' summary
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostList'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new post
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /posts/{id}:
+    get:
+      summary: Get a post by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      summary: Update a post by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      summary: Delete a post by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /users/{id}:
+    get:
+      summary: Get a user by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      summary: Update a user by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      summary: Delete a user by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Post:
+      description: A post
+      type: object
+      required:
+        - title
+        - body
+        - author
+        - categories
+        - timestamp
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        body:
+          type: string
+        author:
+          description: just the author id
+          type: string
+        categories:
+          type: string
+          enum: [Course Review, Blog, Project, Academics]
+        timestamp:
+          type: string
+        imageURL:
+          type: string
+          format: uri
+          description: URL of the image associated with the post
+        courseReview:
+          $ref: '#/components/schemas/CourseReview'
+    CourseReview:
+      type: object
+      properties:
+        courseid:
+          type: string
+          maxLength: 10
+          description: Course ID
+        course_title:
+          type: string
+          description: Course Title
+        review_body:
+          type: string
+          description: Review Body
+        academic_semester:
+          type: string
+          description: Academic Semester
+        taught_by:
+          type: string
+          description: Instructor name
+      required:
+        - courseid
+        - course_title
+        - review_body
+        - academic_semester
+        - taught_by
+      additionalProperties: false
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        bio:
+          type: string
+        profile_picture:
+          type: string
+      required:
+        - id
+        - name
+    PostList:
+      type: array
+      items:
+        $ref: '#/components/schemas/PostSummary'
+    UserList:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'
+    PostSummary:
+      description: A summary of a post
+      type: object
+      required:
+        - title
+        - author
+        - summary
+        - categories
+        - timestamp
+      properties:
+        title:
+          type: string
+        author:
+          $ref: '#/components/schemas/User'
+        summary:
+          type: string
+        categories:
+          type: string
+          enum: [Course Review, Blog, Project, Academics]
+        timestamp:
+          type: string
+        imageURL:
+          type: string
+          format: uri
+          description: URL of the image associated with the post
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          description: A human readable error message
+          type: string
+        code:
+          description: A machine readable error code
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
