@@ -144,25 +144,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-
-  /users:
-    get:
-      summary: Get all users
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserList'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+  /admin/register:
     post:
-      summary: Create a new user
+      summary: Register a new user
+      security:
+        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -172,28 +158,22 @@ paths:
       responses:
         '201':
           description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
         '400':
           description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 
-  /users/{id}:
-    get:
-      summary: Get a user by ID
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
+  /admin/login:
+    post:
+      summary: Auth user & get token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
       responses:
         '200':
           description: OK
@@ -201,82 +181,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-
-    put:
-      summary: Update a user by ID
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      security:
-        - BearerAuth: []
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-
-    delete:
-      summary: Delete a user by ID
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      security:
-        - BearerAuth: []
-      responses:
-        '204':
-          description: No Content
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
 
 components:
   schemas:
@@ -337,7 +243,12 @@ components:
         - taught_by
       additionalProperties: false
     User:
+      description: A user
       type: object
+      required:
+        - name
+        - email
+        - password
       properties:
         id:
           type: string
@@ -347,21 +258,25 @@ components:
           type: string
         password:
           type: string
-        bio:
+        picture_url:
           type: string
-        profile_picture:
-          type: string
+          format: uri
+          description: URL of the user's profile picture
+    UserLogin:
+      description: User login credentials
+      type: object
       required:
-        - id
-        - name
+        - email
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string
     PostList:
       type: array
       items:
         $ref: '#/components/schemas/PostSummary'
-    UserList:
-      type: array
-      items:
-        $ref: '#/components/schemas/User'
     PostSummary:
       description: A summary of a post
       type: object
