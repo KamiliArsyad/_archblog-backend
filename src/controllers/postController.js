@@ -119,16 +119,28 @@ const deletePost = asyncHandler(async (req, res) => {
 const getPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find({});
 
-  // Map over the posts to extract the summary
-  const postSummaries = posts.map((post) => ({
-    title: post.title,
-    author: post.author,
-    summary: post.body.substring(0, 200), 
-    categories: post.categories,
-    timestamp: post.timestamp,
-    imageURL: post.imageURL,
-  }));
+  // Get the author from the database for each post
+  const authorPromises = await posts.map(async (post) => {
+    const author = await User.findById(post.author);
 
+    return author;
+  });
+
+  const authors = await Promise.all(authorPromises);
+
+  const postSummaries = posts.map((post, index) => {
+    return {
+      _id: post._id,
+      title: post.title,
+      author: authors[index],
+      summary: post.body.substring(0, 200),
+      categories: post.categories,
+      timestamp: post.timestamp,
+      imageURL: post.imageURL,
+      courseReview: post.courseReview,
+    };
+  });
+   
   res.json(postSummaries);
 });
 
