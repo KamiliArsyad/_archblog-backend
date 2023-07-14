@@ -1,4 +1,5 @@
 // Helper functions
+const jwt = require("jsonwebtoken");
 
 /**
  * @description: Generate token for user

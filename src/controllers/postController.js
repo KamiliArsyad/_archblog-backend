@@ -22,13 +22,25 @@ const addPost = asyncHandler(async (req, res) => {
   let postTitle = title;
   let postBody = body;
   let postCategories = categories;
+  let postTimestamp = Date.now();
+  let postCourseReview = courseReview;
 
   // If a CourseReview is included, set the title, body, and categories based on the CourseReview
   if (courseReview) {
-    const courseReviewDoc = await CourseReview.findById(courseReview);
-    postTitle = `${courseReviewDoc.course_title}: ${courseReviewDoc.courseid} Review`;
-    postBody = courseReviewDoc.review_body;
+    const courseReviewObj = new CourseReview({
+      courseid: courseReview.courseid,
+      course_title: courseReview.course_title,
+      review_body: courseReview.review_body,
+      academic_semester: courseReview.academic_semester,
+      taught_by: courseReview.taught_by,
+    })
+
+    const createdCourseReview = await courseReviewObj.save();
+
+    postTitle = `${createdCourseReview.course_title}: ${createdCourseReview.courseid} Review`;
+    postBody = createdCourseReview.review_body;
     postCategories = "Course Review";
+    postCourseReview = createdCourseReview._id;
   }
 
   const post = new Post({
@@ -36,9 +48,9 @@ const addPost = asyncHandler(async (req, res) => {
     body: postBody,
     author,
     categories: postCategories,
-    timestamp,
+    timestamp: postTimestamp,
     imageURL,
-    courseReview,
+    courseReview: postCourseReview,
   });
 
   const createdPost = await post.save();

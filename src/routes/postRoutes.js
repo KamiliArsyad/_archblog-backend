@@ -2,18 +2,18 @@ const express = require("express");
 const router = express.Router();
 
 const postController = require("../controllers/postController");
-const { protect } = require("../middlewares/authMiddleware");
+const { auth } = require("../middlewares/authMiddleware");
 
 router
   .route("/")
-  .get(postController.getAllPosts)
-  .post(protect, postController.createPost);
+  .get(postController.getPosts)
+  .post(auth, postController.addPost);
 
 // Specific posts identified by id
 router
   .route("/:id")
   .get(postController.getPostById)
-  .put(protect, postController.updatePost)
-  .delete(protect, postController.deletePost);
+  .put(auth, postController.updatePost)
+  .delete(auth, postController.deletePost);
 
 module.exports = router;
