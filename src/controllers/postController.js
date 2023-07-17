@@ -121,7 +121,8 @@ const getPosts = asyncHandler(async (req, res) => {
 
   // Get the author from the database for each post
   const authorPromises = await posts.map(async (post) => {
-    const author = await User.findById(post.author);
+    // Get the author without the email and password
+    const author = await User.findById(post.author).select("-email -password");
 
     return author;
   });
