@@ -1,0 +1,1216 @@
+{
+	"info": {
+		"_postman_id": "8063f159-90cd-485c-99fe-c6bfaae4cb77",
+		"name": "ArchBlog API Testing",
+		"description": "Backend API for blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "1418303-8063f159-90cd-485c-99fe-c6bfaae4cb77"
+	},
+	"item": [
+		{
+			"name": "posts",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get a post by ID",
+							"id": "eb03fa93-42de-4028-8e50-2cb50589b329",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/posts/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "in ex"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "fdc4e79c-922f-4e33-885a-bb82b991b975",
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/posts/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"posts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n\t\"title\": \"voluptate ut\",\n\t\"body\": \"do reprehenderit\",\n\t\"author\": \"veniam pariatur\",\n\t\"categories\": \"Blog\",\n\t\"timestamp\": \"esse\",\n\t\"id\": \"Excepteur\",\n\t\"imageURL\": \"https://DJgXlkbeUPJTW.ejZZ\",\n\t\"courseReview\": {\n\t\t\"courseid\": \"labor\",\n\t\t\"course_title\": \"velit sit\",\n\t\t\"review_body\": \"incididunt minim labore\",\n\t\t\"academic_semester\": \"dolor\",\n\t\t\"taught_by\": \"est ut con\"\n\t}\n}"
+								},
+								{
+									"id": "41f48f84-18ff-4129-a91e-936fa9020971",
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/posts/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"posts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n\t\"message\": \"irure culpa\",\n\t\"code\": \"amet\"\n}"
+								},
+								{
+									"id": "0e2d0b84-882f-47e8-ab8a-4322d67fe37a",
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/posts/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"posts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n\t\"message\": \"irure culpa\",\n\t\"code\": \"amet\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update a post by ID",
+							"id": "852d0574-20e9-498e-9884-8e6aee1383d0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"voluptate ut\",\n\t\"body\": \"do reprehenderit\",\n\t\"author\": \"veniam pariatur\",\n\t\"categories\": \"Blog\",\n\t\"timestamp\": \"esse\",\n\t\"id\": \"Excepteur\",\n\t\"imageURL\": \"https://DJgXlkbeUPJTW.ejZZ\",\n\t\"courseReview\": {\n\t\t\"courseid\": \"labor\",\n\t\t\"course_title\": \"velit sit\",\n\t\t\"review_body\": \"incididunt minim labore\",\n\t\t\"academic_semester\": \"dolor\",\n\t\t\"taught_by\": \"est ut con\"\n\t}\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/posts/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "in ex"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "bf96c738-99da-4c27-8457-2483ed713a9a",
+									"name": "OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"title\": \"voluptate ut\",\n\t\"body\": \"do reprehenderit\",\n\t\"author\": \"veniam pariatur\",\n\t\"categories\": \"Blog\",\n\t\"timestamp\": \"esse\",\n\t\"id\": \"Excepteur\",\n\t\"imageURL\": \"https://DJgXlkbeUPJTW.ejZZ\",\n\t\"courseReview\": {\n\t\t\"courseid\": \"labor\",\n\t\t\"course_title\": \"velit sit\",\n\t\t\"review_body\": \"incididunt minim labore\",\n\t\t\"academic_semester\": \"dolor\",\n\t\t\"taught_by\": \"est ut con\"\n\t}\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/posts/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"posts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								},
+								{
+									"id": "58653f46-8e96-454f-af09-1a79c402c217",
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"title\": \"voluptate ut\",\n\t\"body\": \"do reprehenderit\",\n\t\"author\": \"veniam pariatur\",\n\t\"categories\": \"Blog\",\n\t\"timestamp\": \"esse\",\n\t\"id\": \"Excepteur\",\n\t\"imageURL\": \"https://DJgXlkbeUPJTW.ejZZ\",\n\t\"courseReview\": {\n\t\t\"courseid\": \"labor\",\n\t\t\"course_title\": \"velit sit\",\n\t\t\"review_body\": \"incididunt minim labore\",\n\t\t\"academic_semester\": \"dolor\",\n\t\t\"taught_by\": \"est ut con\"\n\t}\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/posts/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"posts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n\t\"message\": \"irure culpa\",\n\t\"code\": \"amet\"\n}"
+								},
+								{
+									"id": "204699e3-f80b-4724-bf46-7424381a85a2",
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"title\": \"voluptate ut\",\n\t\"body\": \"do reprehenderit\",\n\t\"author\": \"veniam pariatur\",\n\t\"categories\": \"Blog\",\n\t\"timestamp\": \"esse\",\n\t\"id\": \"Excepteur\",\n\t\"imageURL\": \"https://DJgXlkbeUPJTW.ejZZ\",\n\t\"courseReview\": {\n\t\t\"courseid\": \"labor\",\n\t\t\"course_title\": \"velit sit\",\n\t\t\"review_body\": \"incididunt minim labore\",\n\t\t\"academic_semester\": \"dolor\",\n\t\t\"taught_by\": \"est ut con\"\n\t}\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/posts/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"posts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n\t\"message\": \"irure culpa\",\n\t\"code\": \"amet\"\n}"
+								},
+								{
+									"id": "b20addca-ac1f-43e7-92c6-c04b629458e2",
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"title\": \"voluptate ut\",\n\t\"body\": \"do reprehenderit\",\n\t\"author\": \"veniam pariatur\",\n\t\"categories\": \"Blog\",\n\t\"timestamp\": \"esse\",\n\t\"id\": \"Excepteur\",\n\t\"imageURL\": \"https://DJgXlkbeUPJTW.ejZZ\",\n\t\"courseReview\": {\n\t\t\"courseid\": \"labor\",\n\t\t\"course_title\": \"velit sit\",\n\t\t\"review_body\": \"incididunt minim labore\",\n\t\t\"academic_semester\": \"dolor\",\n\t\t\"taught_by\": \"est ut con\"\n\t}\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/posts/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"posts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n\t\"message\": \"irure culpa\",\n\t\"code\": \"amet\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete a post by ID",
+							"id": "41ea5a6f-536a-4b3e-9ab2-65da40f37fa7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/posts/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "in ex"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "f56e7fa5-44a2-4e57-be93-2e246ba6e858",
+									"name": "No Content",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/posts/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"posts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								},
+								{
+									"id": "269e7cc1-70b0-4461-a060-72e7272bf29d",
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/posts/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"posts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n\t\"message\": \"irure culpa\",\n\t\"code\": \"amet\"\n}"
+								},
+								{
+									"id": "455e3965-6165-4e82-a825-3829496f6151",
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/posts/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"posts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n\t\"message\": \"irure culpa\",\n\t\"code\": \"amet\"\n}"
+								}
+							]
+						}
+					],
+					"id": "ae78254e-56be-4c45-ba90-a17a72f00b5c"
+				},
+				{
+					"name": "Get all posts' summary",
+					"id": "ddf94fcd-82a8-478f-ac9a-d2d667ecfc6a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/posts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "dbe0ec05-dbe5-4062-95a9-8ed2d4ac9429",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/posts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n\t{\n\t\t\"title\": \"tempor \",\n\t\t\"author\": {\n\t\t\t\"name\": \"ut laborum sit laboris\",\n\t\t\t\"email\": \"qui\",\n\t\t\t\"password\": \"sed proident\",\n\t\t\t\"id\": \"commodo nostrud amet aliqua\",\n\t\t\t\"picture_url\": \"https://EVPHIGfPzVwDNPXDdPMrky.xbhTuriuovAxq8E+.MUaCoKw0qArhiXjg,gT\"\n\t\t},\n\t\t\"summary\": \"officia eiusmod deseru\",\n\t\t\"categories\": \"Blog\",\n\t\t\"timestamp\": \"consequat\",\n\t\t\"imageURL\": \"http://qhQOoEntptCColAGAnE.ucHPaOClr6B9E.WUULIFkcxlfBdNuLmMRJJ,o\"\n\t},\n\t{\n\t\t\"title\": \"non in est proident\",\n\t\t\"author\": {\n\t\t\t\"name\": \"deserunt veniam aliqua\",\n\t\t\t\"email\": \"cillum velit m\",\n\t\t\t\"password\": \"consectetur dolor nostrud dolor\",\n\t\t\t\"id\": \"laboris enim cupidatat\",\n\t\t\t\"picture_url\": \"http://ABxGFogttnKjfodSsb.ikskrhGJBEAiPUIeHFt9PhxvHnyR\"\n\t\t},\n\t\t\"summary\": \"ullamco occaecat Lorem\",\n\t\t\"categories\": \"Blog\",\n\t\t\"timestamp\": \"fugiat deserunt\",\n\t\t\"imageURL\": \"https://ZEowjDXgYleaXUfmeDMTvfhcmv.tuzhxO0wNOgeGY8e4y0RQL0iwKS3F9vbVgGMtNoBKHl1mHBa06V0.MxDG5JChMW5u\"\n\t}\n]"
+						},
+						{
+							"id": "c8432106-7d24-4af9-8ace-a8643ba33252",
+							"name": "Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/posts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n\t\"message\": \"irure culpa\",\n\t\"code\": \"amet\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create a new post",
+					"id": "7c759706-726a-456c-af4c-8bbe919fe9ee",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"voluptate ut\",\n\t\"body\": \"do reprehenderit\",\n\t\"author\": \"veniam pariatur\",\n\t\"categories\": \"Blog\",\n\t\"timestamp\": \"esse\",\n\t\"id\": \"Excepteur\",\n\t\"imageURL\": \"https://DJgXlkbeUPJTW.ejZZ\",\n\t\"courseReview\": {\n\t\t\"courseid\": \"labor\",\n\t\t\"course_title\": \"velit sit\",\n\t\t\"review_body\": \"incididunt minim labore\",\n\t\t\"academic_semester\": \"dolor\",\n\t\t\"taught_by\": \"est ut con\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/posts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "cff46e45-cb93-42ec-b7c4-dae4a9ed2ab9",
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"voluptate ut\",\n\t\"body\": \"do reprehenderit\",\n\t\"author\": \"veniam pariatur\",\n\t\"categories\": \"Blog\",\n\t\"timestamp\": \"esse\",\n\t\"id\": \"Excepteur\",\n\t\"imageURL\": \"https://DJgXlkbeUPJTW.ejZZ\",\n\t\"courseReview\": {\n\t\t\"courseid\": \"labor\",\n\t\t\"course_title\": \"velit sit\",\n\t\t\"review_body\": \"incididunt minim labore\",\n\t\t\"academic_semester\": \"dolor\",\n\t\t\"taught_by\": \"est ut con\"\n\t}\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/posts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						},
+						{
+							"id": "bc158172-939e-4c36-81fb-9ea7baa79a71",
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"voluptate ut\",\n\t\"body\": \"do reprehenderit\",\n\t\"author\": \"veniam pariatur\",\n\t\"categories\": \"Blog\",\n\t\"timestamp\": \"esse\",\n\t\"id\": \"Excepteur\",\n\t\"imageURL\": \"https://DJgXlkbeUPJTW.ejZZ\",\n\t\"courseReview\": {\n\t\t\"courseid\": \"labor\",\n\t\t\"course_title\": \"velit sit\",\n\t\t\"review_body\": \"incididunt minim labore\",\n\t\t\"academic_semester\": \"dolor\",\n\t\t\"taught_by\": \"est ut con\"\n\t}\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/posts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n\t\"message\": \"irure culpa\",\n\t\"code\": \"amet\"\n}"
+						},
+						{
+							"id": "369b2d4a-ac72-44eb-a9eb-ec7af259c814",
+							"name": "Internal Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"voluptate ut\",\n\t\"body\": \"do reprehenderit\",\n\t\"author\": \"veniam pariatur\",\n\t\"categories\": \"Blog\",\n\t\"timestamp\": \"esse\",\n\t\"id\": \"Excepteur\",\n\t\"imageURL\": \"https://DJgXlkbeUPJTW.ejZZ\",\n\t\"courseReview\": {\n\t\t\"courseid\": \"labor\",\n\t\t\"course_title\": \"velit sit\",\n\t\t\"review_body\": \"incididunt minim labore\",\n\t\t\"academic_semester\": \"dolor\",\n\t\t\"taught_by\": \"est ut con\"\n\t}\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/posts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n\t\"message\": \"irure culpa\",\n\t\"code\": \"amet\"\n}"
+						}
+					]
+				}
+			],
+			"id": "f1375636-8cd1-46a1-95b9-d42631800944"
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "register",
+					"item": [
+						{
+							"name": "Register a new user",
+							"id": "8f747b45-ba27-4d12-a81d-815246f7341d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"in\",\n\t\"email\": \"et ipsum reprehenderit irure\",\n\t\"password\": \"do veniam amet aute\",\n\t\"id\": \"fugiat labore\",\n\t\"picture_url\": \"https://JaTR.jsKJ23X5g49k+\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"register"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17572cd9-171c-44f1-9632-25418f455983",
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"in\",\n\t\"email\": \"et ipsum reprehenderit irure\",\n\t\"password\": \"do veniam amet aute\",\n\t\"id\": \"fugiat labore\",\n\t\"picture_url\": \"https://JaTR.jsKJ23X5g49k+\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/admin/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"register"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n\t\"name\": \"in\",\n\t\"email\": \"et ipsum reprehenderit irure\",\n\t\"password\": \"do veniam amet aute\",\n\t\"id\": \"fugiat labore\",\n\t\"picture_url\": \"https://JaTR.jsKJ23X5g49k+\"\n}"
+								},
+								{
+									"id": "bdb193b1-8642-446e-958e-5b9c174f1b7f",
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"in\",\n\t\"email\": \"et ipsum reprehenderit irure\",\n\t\"password\": \"do veniam amet aute\",\n\t\"id\": \"fugiat labore\",\n\t\"picture_url\": \"https://JaTR.jsKJ23X5g49k+\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/admin/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"register"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								}
+							]
+						}
+					],
+					"id": "ae181c49-14ea-4f9f-923f-b870cd2d2d11"
+				},
+				{
+					"name": "login",
+					"item": [
+						{
+							"name": "Auth user & get token",
+							"id": "69d791fc-272b-4d99-a2d3-5a4c41ad0823",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"dolore culpa nulla dolor\",\n\t\"password\": \"eiusmod cupidatat sunt esse ut\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "7b5410f5-0683-4860-a979-2663a19b6a5d",
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"email\": \"dolore culpa nulla dolor\",\n\t\"password\": \"eiusmod cupidatat sunt esse ut\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/admin/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n\t\"name\": \"in\",\n\t\"email\": \"et ipsum reprehenderit irure\",\n\t\"password\": \"do veniam amet aute\",\n\t\"id\": \"fugiat labore\",\n\t\"picture_url\": \"https://JaTR.jsKJ23X5g49k+\"\n}"
+								},
+								{
+									"id": "23391fb3-9aa8-40b0-9b21-c55581c3e8f3",
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"email\": \"dolore culpa nulla dolor\",\n\t\"password\": \"eiusmod cupidatat sunt esse ut\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/admin/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"login"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								}
+							]
+						}
+					],
+					"id": "3bac1f9f-769b-40dd-b9bf-a917edc7cc37"
+				}
+			],
+			"id": "543e5065-319b-40b1-86cc-497c969a1edf"
+		}
+	],
+	"variable": [
+		{
+			"id": "570c5ba6-08cb-41f2-8bb1-908d500c280e",
+			"key": "baseUrl",
+			"value": "http://localhost:5000/api"
+		},
+		{
+			"id": "9cbae8b7-3cda-4289-9b46-65f773b1196d",
+			"key": "bearerToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YjBkM2M5MzdiNWIxYjEwNzRiZTY1ZCIsImlhdCI6MTY4OTMxNjgzMCwiZXhwIjoxNjkxOTA4ODMwfQ.MymFQvgv1-fe34m0OtoikB9W7LotlE4iyLTPHcJkG9I"
+		}
+	]
+}
