@@ -7,7 +7,7 @@ const User = require("../models/userModel");
 // @route   POST /api/posts
 // @access  Private
 const addPost = asyncHandler(async (req, res) => {
-  const { title, body, author, categories, timestamp, imageURL, courseReview } =
+  const { title, body, author, categories, imageURL, courseReview } =
     req.body;
 
   // Fetch the author from the database
@@ -137,6 +137,8 @@ const getPosts = asyncHandler(async (req, res) => {
       summary: post.body.substring(0, 200),
       categories: post.categories,
       timestamp: post.timestamp,
+      viewCount: post.viewCount,
+      wordCount: post.body.split(" ").length,
       imageURL: post.imageURL,
       courseReview: post.courseReview,
     };
@@ -152,6 +154,10 @@ const getPostById = asyncHandler(async (req, res) => {
   const post = await Post.findById(req.params.id);
 
   if (post) {
+    // Increment the view count and save the post
+    post.viewCount += 1;
+    await post.save();
+
     res.json(post);
   } else {
     res.status(404).json({ message: "Post not found" });
