@@ -214,6 +214,9 @@ components:
           type: string
           format: uri
           description: URL of the image associated with the post
+        viewCount:
+          type: integer
+          description: Number of views
         courseReview:
           $ref: '#/components/schemas/CourseReview'
     CourseReview:
@@ -286,6 +289,8 @@ components:
         - summary
         - categories
         - timestamp
+        - wordCount
+        - viewCount
       properties:
         title:
           type: string
@@ -298,6 +303,12 @@ components:
           enum: [Course Review, Blog, Project, Academics]
         timestamp:
           type: string
+        wordCount:
+          type: integer
+          description: Number of words in the post
+        viewCount:
+          type: integer
+          description: Number of views
         imageURL:
           type: string
           format: uri

@@ -26,6 +26,10 @@ const PostSchema = new mongoose.Schema({
   imageURL: {
     type: String,
   },
+  viewCount: {
+    type: Number,
+    default: 0,
+  },
   courseReview: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "CourseReview",
