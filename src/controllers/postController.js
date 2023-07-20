@@ -151,13 +151,9 @@ const getPosts = asyncHandler(async (req, res) => {
 // @route   GET /api/posts/:id
 // @access  Public
 const getPostById = asyncHandler(async (req, res) => {
-  const post = await Post.findById(req.params.id);
+  const post = await Post.findByIdAndUpdate(req.params.id, { $inc: { viewCount: 1 } }, { new: true });
 
   if (post) {
-    // Increment the view count and save the post
-    post.viewCount += 1;
-    await post.save();
-
     res.json(post);
   } else {
     res.status(404).json({ message: "Post not found" });
