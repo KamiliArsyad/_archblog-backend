@@ -134,7 +134,7 @@ const getPosts = asyncHandler(async (req, res) => {
       _id: post._id,
       title: post.title,
       author: authors[index],
-      summary: post.body.substring(0, 200),
+      summary: post.body.substring(0, 300),
       categories: post.categories,
       timestamp: post.timestamp,
       viewCount: post.viewCount,
