@@ -19,7 +19,7 @@
     "express-async-handler": "^1.2.0",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.3.3",
+    "mongoose": "^7.5.0",
     "swagger-ui-express": "^5.0.0",
     "yaml": "^2.3.1"
   },
