@@ -147,11 +147,17 @@ const getPosts = asyncHandler(async (req, res) => {
   res.json(postSummaries);
 });
 
-// @desc    Get a post by ID
+// @desc    Get a post by ID or slug
 // @route   GET /api/posts/:id
 // @access  Public
 const getPostById = asyncHandler(async (req, res) => {
   const post = await Post.findById(req.params.id);
+
+  if (!post) {
+    // Get by slug, delimited by dashes, e.g. "this-is-a-slug"
+    const slug = req.params.id.split("-").join(" ");
+    post = await Post.findOne({ title: slug });
+  }
 
   if (post) {
     // Increment the view count and save the post
