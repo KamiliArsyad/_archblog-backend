@@ -7,8 +7,7 @@ const User = require("../models/userModel");
 // @route   POST /api/posts
 // @access  Private
 const addPost = asyncHandler(async (req, res) => {
-  const { title, body, author, categories, imageURL, courseReview } =
-    req.body;
+  const { title, body, author, categories, imageURL, courseReview } = req.body;
 
   // Fetch the author from the database
   const authorUser = await User.findById(author);
@@ -33,7 +32,7 @@ const addPost = asyncHandler(async (req, res) => {
       review_body: courseReview.review_body,
       academic_semester: courseReview.academic_semester,
       taught_by: courseReview.taught_by,
-    })
+    });
 
     const createdCourseReview = await courseReviewObj.save();
 
@@ -143,7 +142,7 @@ const getPosts = asyncHandler(async (req, res) => {
       courseReview: post.courseReview,
     };
   });
-   
+
   res.json(postSummaries);
 });
 
@@ -151,12 +150,15 @@ const getPosts = asyncHandler(async (req, res) => {
 // @route   GET /api/posts/:id
 // @access  Public
 const getPostById = asyncHandler(async (req, res) => {
-  const post = await Post.findById(req.params.id);
+  // Check if the ID is a valid MongoDB ID or a slug
+  const isMongoId = req.params.id.match(/^[0-9a-fA-F]{24}$/);
 
-  if (!post) {
-    // Get by slug, delimited by dashes, e.g. "this-is-a-slug"
-    const slug = req.params.id.split("-").join(" ");
-    post = await Post.findOne({ title: slug });
+  let post;
+
+  if (isMongoId) {
+    post = await Post.findById(req.params.id);
+  } else {
+    post = await Post.findOne({ slug: req.params.id });
   }
 
   if (post) {
