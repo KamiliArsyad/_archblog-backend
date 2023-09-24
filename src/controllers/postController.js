@@ -157,12 +157,10 @@ const getPostById = asyncHandler(async (req, res) => {
   let post;
 
   if (isMongoId) {
-    post = await Post.findById(req.params.id);
+    post = await Post.findByIdAndUpdate(req.params.id, { $inc: { viewCount: 1 } });
   } else {
-    post = await Post.findOne({ slug: req.params.id });
+    post = await Post.findOneAndUpdate({ slug: req.params.id }, { $inc: { viewCount: 1 } });
   }
-
-  const post = await Post.findByIdAndUpdate(req.params.id, { $inc: { viewCount: 1 } }, { new: true });
 
   if (post) {
     res.json(post);
