@@ -131,6 +131,7 @@ const getPosts = asyncHandler(async (req, res) => {
   const postSummaries = posts.map((post, index) => {
     return {
       _id: post._id,
+      slug: post.slug,
       title: post.title,
       author: authors[index],
       summary: post.body.substring(0, 200),
