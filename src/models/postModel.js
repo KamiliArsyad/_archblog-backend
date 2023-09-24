@@ -1,9 +1,15 @@
 const mongoose = require("mongoose");
+const { generateSlugFromTitle } = require("../auxiliaries/functions");
 
 const PostSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+  },
+  slug: {
+    type: String,
+    required: true,
+    unique: true, // Prevent duplicate slugs
   },
   body: {
     type: String,
@@ -34,6 +40,25 @@ const PostSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "CourseReview",
   },
+});
+
+// Create a slug from the title
+PostSchema.pre("validate", async function (next) {
+  if (!this.isModified("title")) {
+    return next();
+  }
+
+  this.slug = generateSlugFromTitle(this.title);
+
+  try {
+    const slugExists = await mongoose.models.Post.findOne({ slug: this.slug });
+    if (slugExists) {
+      this.slug = `${this.slug}-${this._id}`;
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = mongoose.model("Post", PostSchema);
