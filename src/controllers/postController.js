@@ -134,7 +134,7 @@ const getPosts = asyncHandler(async (req, res) => {
       slug: post.slug,
       title: post.title,
       author: authors[index],
-      summary: post.body.substring(0, 200),
+      summary: post.body.substring(0, 300),
       categories: post.categories,
       timestamp: post.timestamp,
       viewCount: post.viewCount,
@@ -162,11 +162,9 @@ const getPostById = asyncHandler(async (req, res) => {
     post = await Post.findOne({ slug: req.params.id });
   }
 
-  if (post) {
-    // Increment the view count and save the post
-    post.viewCount += 1;
-    await post.save();
+  const post = await Post.findByIdAndUpdate(req.params.id, { $inc: { viewCount: 1 } }, { new: true });
 
+  if (post) {
     res.json(post);
   } else {
     res.status(404).json({ message: "Post not found" });
