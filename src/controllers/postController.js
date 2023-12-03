@@ -162,11 +162,17 @@ const getPostById = asyncHandler(async (req, res) => {
     post = await Post.findOneAndUpdate({ slug: req.params.id }, { $inc: { viewCount: 1 } });
   }
 
-  if (post) {
-    res.json(post);
-  } else {
+  if (!post) {
     res.status(404).json({ message: "Post not found" });
   }
+
+  if (post.courseReview) {
+    const courseReview = await CourseReview.findById(post.courseReview);
+
+    post.courseReview = courseReview;
+  }
+
+  res.json(post);
 });
 
 module.exports = {
