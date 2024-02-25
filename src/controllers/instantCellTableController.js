@@ -14,7 +14,7 @@ const getRows = asyncHandler(async (req, res) => {
 // @access  Public (for POC purposes)
 const getRowById = asyncHandler(async (req, res) => {
   const { rowId } = req.params;
-  const row = await TableRow.findOne({ rowId: rowId });
+  const row = await TableRow.findOne({ _id: rowId });
 
   if (row) {
     res.json(row);
@@ -30,7 +30,7 @@ const updateCell = asyncHandler(async (req, res) => {
   const { value } = req.body; // New value for the cell
   const { rowId, columnName } = req.params;
 
-  const row = await TableRow.findOne({ rowId: rowId });
+  const row = await TableRow.findOne({ _id: rowId });
 
   if (row) {
     const cell = row.cells.find((cell) => cell.columnName === columnName);
@@ -71,7 +71,7 @@ const addRow = asyncHandler(async (req, res) => {
 const deleteRow = asyncHandler(async (req, res) => {
   const { rowId } = req.params;
 
-  const deletionResult = await TableRow.deleteOne({ rowId: rowId });
+  const deletionResult = await TableRow.deleteOne({ _id: rowId });
 
   if (deletionResult.deletedCount === 0) {
     res.status(404).send("Row not found");

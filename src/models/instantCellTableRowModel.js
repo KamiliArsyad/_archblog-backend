@@ -17,10 +17,10 @@ const CellSchema = new mongoose.Schema({
 
 const TableRowSchema = new mongoose.Schema(
   {
-    tableId: {
-      type: mongoose.Schema.Types.ObjectId, // Reference to the table this row belongs to, if applicable
-      required: true,
-    },
+    // tableId: {
+    //   type: mongoose.Schema.Types.ObjectId, // Reference to the table this row belongs to, if applicable
+    //   required: true,
+    // },
     cells: [CellSchema], // Embedding CellSchema for flexible cell management within each row
     createdAt: {
       type: Date,
