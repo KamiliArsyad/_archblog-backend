@@ -206,8 +206,11 @@ components:
           description: just the author id
           type: string
         categories:
-          type: string
-          enum: [Course Review, Blog, Project, Academics]
+          type: array
+          items:
+            type: string
+            enum: [Course Review, Blog, Project, Academics, Paper, Research]
+          description: Categories of the post
         timestamp:
           type: string
         imageURL:

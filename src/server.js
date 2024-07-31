@@ -22,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
+app.use("/api/rows", require("./routes/ictRoutes"));
 app.use("/api/posts", require("./routes/postRoutes"));
 app.use("/api/admin", require("./routes/userRoutes"));
 
