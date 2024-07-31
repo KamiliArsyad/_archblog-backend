@@ -21,8 +21,7 @@ const PostSchema = new mongoose.Schema({
     required: true,
   },
   categories: {
-    type: String,
-    enum: ["Course Review", "Blog", "Project", "Academics"],
+    type: [String],
     required: true,
   },
   timestamp: {

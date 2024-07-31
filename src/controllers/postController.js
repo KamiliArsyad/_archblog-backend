@@ -38,7 +38,7 @@ const addPost = asyncHandler(async (req, res) => {
 
     postTitle = `${createdCourseReview.course_title}: ${createdCourseReview.courseid} Review`;
     postBody = createdCourseReview.review_body;
-    postCategories = "Course Review";
+    postCategories = ["Course Review"];
     postCourseReview = createdCourseReview._id;
   }
 
